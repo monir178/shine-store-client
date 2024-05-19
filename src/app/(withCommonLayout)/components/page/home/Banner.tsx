@@ -1,16 +1,17 @@
 import React from "react";
-
-import { Button, Image } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import HeroImages from "./HeroSection";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col-reverse sm:flex-row justify-between gap-6 items-center bg-transparent p-5 sm:p-10 rounded-xl mt-4">
-      <div className="text-center sm:text-left mb-5 sm:mb-0 w-full md:w-1/2">
+    <div className="flex flex-col-reverse lg:flex-row justify-between items-center bg-transparent p-5 sm:p-10 rounded-xl mt-4">
+      {/* Texts */}
+      <div className="text-center lg:text-left mb-5 lg:mb-0 w-full lg:w-1/2">
         <h1 className="text-4xl font-bold mb-3">
           <span className="text-5xl text-green-400">W</span>elcome to
           <span className="text-green-400"> Shine Store</span>
         </h1>
-        <p className="text-lg mb-5 max-w-[60ch]">
+        <p className="text-lg mb-5 max-w-[60ch] mx-auto lg:mx-0">
           Discover a world of cleanliness and convenience at Shine Store. We
           offer a wide selection of{" "}
           <span className="text-green-400 text-xl font-semibold">
@@ -20,7 +21,7 @@ const Banner = () => {
           cutting-edge tools, find everything you need for a sparkling home or
           office.
         </p>
-        <div className="flex justify-center sm:justify-start ">
+        <div className="flex justify-center lg:justify-start">
           <Button className="bg-green-400 text-white px-8 py-2 rounded mr-2 text-lg">
             Shop Now
           </Button>
@@ -29,15 +30,10 @@ const Banner = () => {
           </Button>
         </div>
       </div>
-      <div className="w-full sm:w-1/2 flex justify-center">
-        <div className="w-full h-64 sm:h-auto relative">
-          <Image
-            src="/banner1.jpg"
-            alt="a women with cleaning supplies"
-            isBlurred
-            isZoomed
-          />
-        </div>
+
+      {/* Images */}
+      <div className="w-full lg:w-1/2 mb-5 lg:mb-0">
+        <HeroImages />
       </div>
     </div>
   );

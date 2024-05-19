@@ -9,12 +9,12 @@ import {
   NavbarMenu,
   NavbarContent,
   NavbarItem,
-  Link,
   Button,
 } from "@nextui-org/react";
 import Image from "next/image";
 import shine from "../../../../../public/shine.png";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import Link from "next/link";
 
 const CommonNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -105,7 +105,6 @@ const CommonNavbar = () => {
                   : "foreground"
               }
               href={item.path}
-              size="lg"
               onClick={() => setIsMenuOpen(false)}>
               {item.label}
             </Link>
@@ -115,7 +114,6 @@ const CommonNavbar = () => {
           <Link
             className="w-full  font-semibold text-green-400"
             href="#"
-            size="lg"
             onClick={() => setIsMenuOpen(false)}>
             Login
           </Link>
