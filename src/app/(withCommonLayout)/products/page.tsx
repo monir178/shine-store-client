@@ -2,8 +2,8 @@ import { IProduct } from "@/app/types/product";
 import { Button, Card, CardFooter, CardHeader, Image } from "@nextui-org/react";
 import React from "react";
 
-const AllFlashSaleProducts = async () => {
-  const res = await fetch("http://localhost:5000/flash-sale", {
+const AllProducts = async () => {
+  const res = await fetch("http://localhost:5000/products", {
     next: {
       revalidate: 30,
     },
@@ -13,9 +13,6 @@ const AllFlashSaleProducts = async () => {
 
   return (
     <div className="mx-2 mt-8">
-      <h1 className="text-center text-xl md:text-2xl lg:text-5xl text-green-400 mb-4 lg:mb-10">
-        Flash Sale Products
-      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
         {products.map((product: IProduct) => (
           <Card
@@ -57,4 +54,4 @@ const AllFlashSaleProducts = async () => {
   );
 };
 
-export default AllFlashSaleProducts;
+export default AllProducts;

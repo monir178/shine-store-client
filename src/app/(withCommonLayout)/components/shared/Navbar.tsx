@@ -21,7 +21,7 @@ const CommonNavbar = () => {
 
   const menuItems = [
     { label: "Home", path: "/" },
-    { label: "Flash Sale", path: "/flash-sale" },
+
     { label: "All Products", path: "/products" },
     { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
@@ -30,7 +30,7 @@ const CommonNavbar = () => {
   return (
     <Navbar
       className="py-0 lg:py-2"
-      maxWidth="full"
+      maxWidth="2xl"
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}>
