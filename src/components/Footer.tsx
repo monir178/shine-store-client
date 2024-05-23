@@ -14,7 +14,11 @@ const Footer = () => {
             </h5>
             <ul className="list-none  space-y-1">
               <li>
-                <small>Dish Washing Items</small>
+                <Link
+                  href="/flash-sale"
+                  className="hover:scale-110 underline-offset-2 underline text-blue-500">
+                  <small>Flash Sale Products</small>
+                </Link>
               </li>
               <li>
                 <small>Pest Controllers</small>
