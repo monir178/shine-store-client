@@ -43,20 +43,29 @@ const CommonNavbar = () => {
       <NavbarContent className="sm:hidden  justify-end pr-3" justify="center">
         <NavbarBrand>
           <ThemeSwitcher />
-          <Image src={shine} alt="Shine Store Logo" width={50} height={50} />
-          <p className="font-semibold  text-lg ms-2 text-green-400">
-            Shine Store
-          </p>
+          <Link href="/">
+            <Image src={shine} alt="Shine Store Logo" width={50} height={50} />
+            <p className="font-semibold  text-lg ms-2 text-green-400">
+              Shine Store
+            </p>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex justify-between w-full">
         <NavbarContent justify="start">
           <NavbarBrand className="flex items-center">
-            <Image src={shine} alt="Shine Store Logo" width={50} height={50} />
-            <p className="font-semibold  ms-3 text-medium lg:text-2xl text-green-400">
-              Shine Store
-            </p>
+            <Link href="/">
+              <Image
+                src={shine}
+                alt="Shine Store Logo"
+                width={50}
+                height={50}
+              />
+              <p className="font-semibold  ms-3 text-medium lg:text-2xl text-green-400">
+                Shine Store
+              </p>
+            </Link>
           </NavbarBrand>
         </NavbarContent>
         <NavbarContent justify="end">
