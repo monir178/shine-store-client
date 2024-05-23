@@ -15,9 +15,7 @@ import { EditIcon, EyeIcon, Trash2 } from "lucide-react";
 import ProductTable from "../components/ProductTable";
 
 const DashboardProductTable = async () => {
-  const res = await fetch(
-    "https://shine-store-server-ivory.vercel.app/all-products"
-  );
+  const res = await fetch("https://shin-server.vercel.app/all-products");
   const products = await res.json();
 
   return (

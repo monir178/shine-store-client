@@ -8,9 +8,7 @@ interface IProductId {
 }
 
 export const generateStaticParams = async () => {
-  const res = await fetch(
-    "https://shine-store-server-ivory.vercel.app/all-products"
-  );
+  const res = await fetch("https://shin-server.vercel.app/all-products");
 
   const staticProducts = await res.json();
 
@@ -23,7 +21,7 @@ const ProductDetailsPage = async ({ params }: IProductId) => {
   //   console.log(searchParams);
 
   const res = await fetch(
-    `https://shine-store-server-ivory.vercel.app/products/${params.productId}`
+    `https://shin-server.vercel.app/products/${params.productId}`
   );
 
   const data = await res.json();

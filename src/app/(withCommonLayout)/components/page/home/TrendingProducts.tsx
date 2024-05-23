@@ -3,14 +3,11 @@ import { Button, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
 
 const TrendingProducts = async () => {
-  const res = await fetch(
-    "https://shine-store-server-ivory.vercel.app/trending-products",
-    {
-      next: {
-        revalidate: 30,
-      },
-    }
-  );
+  const res = await fetch("https://shin-server.vercel.app/trending-products", {
+    next: {
+      revalidate: 30,
+    },
+  });
   const products = await res.json();
 
   return (

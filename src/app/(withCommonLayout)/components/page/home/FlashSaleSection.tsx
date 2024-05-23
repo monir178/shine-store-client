@@ -11,14 +11,11 @@ import Link from "next/link";
 import React from "react";
 
 const FlashSaleSection = async () => {
-  const res = await fetch(
-    "https://shine-store-server-ivory.vercel.app/flash-sale",
-    {
-      next: {
-        revalidate: 30,
-      },
-    }
-  );
+  const res = await fetch("https://shin-server.vercel.app/flash-sale", {
+    next: {
+      revalidate: 30,
+    },
+  });
   const products = await res.json();
 
   // Sort flash sale products based on creation time
