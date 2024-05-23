@@ -43,7 +43,11 @@ const Footer = () => {
             </h5>
             <ul className="list-none  space-y-1">
               <li>
-                <small>Contact Us</small>
+                <Link
+                  href="/contact"
+                  className="hover:scale-110 underline-offset-2 underline text-blue-500">
+                  <small>Contact</small>
+                </Link>
               </li>
               <li>
                 <small>Shipping Policy</small>
