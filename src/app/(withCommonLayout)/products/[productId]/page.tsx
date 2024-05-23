@@ -9,7 +9,7 @@ interface IProductId {
 
 export const generateStaticParams = async () => {
   const res = await fetch(
-    "https://shine-store-server-ivory.vercel.app/products"
+    "https://shine-store-server-ivory.vercel.app/all-products"
   );
 
   const staticProducts = await res.json();
