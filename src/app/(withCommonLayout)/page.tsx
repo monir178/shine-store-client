@@ -1,13 +1,15 @@
 import Banner from "./components/page/home/Banner";
+import CategorySection from "./components/page/home/CategorySection";
 import FlashSaleSection from "./components/page/home/FlashSaleSection";
-import HeroSection from "./components/page/home/HeroSection";
+import TrendingProducts from "./components/page/home/TrendingProducts";
 
 const Home = () => {
   return (
     <div>
       <Banner />
       <FlashSaleSection />
-      {/* <HeroSection /> */}
+      <CategorySection />
+      <TrendingProducts />
     </div>
   );
 };

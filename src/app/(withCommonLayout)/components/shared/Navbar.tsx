@@ -21,8 +21,8 @@ const CommonNavbar = () => {
 
   const menuItems = [
     { label: "Home", path: "/" },
-
     { label: "All Products", path: "/products" },
+    { label: "Dashboard", path: "/dashboard" },
     { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
   ];

@@ -1,5 +1,13 @@
 import { IProduct } from "@/app/types/product";
-import { Button, Card, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Image,
+} from "@nextui-org/react";
+import Link from "next/link";
 import React from "react";
 
 const AllFlashSaleProducts = async () => {
@@ -9,7 +17,7 @@ const AllFlashSaleProducts = async () => {
     },
   });
   const products = await res.json();
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="mx-2 mt-8">
@@ -18,38 +26,37 @@ const AllFlashSaleProducts = async () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
         {products.map((product: IProduct) => (
-          <Card
-            key={product._id}
-            isFooterBlurred
-            className="h-[300px]  lg:h-[400px]">
-            <CardHeader className="absolute z-10 top-1 flex-col items-start">
-              <h4 className=" font-semibold text-black   text-lg md:text-2xl">
-                {product.title}
-              </h4>
-              <p className="text-tiny  uppercase  text-black font-bold">
-                {product.brand}
+          <Card key={product._id} className="py-4 w-full">
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+              <p className=" uppercase font-bold">{product.title}</p>
+              <small className="text-green-400 font-semibold text-lg">
+                ${product.price}
+              </small>
+              <p className="font-semibold ">
+                <span className="text-blue-500">Brand:</span> {product.brand}
               </p>
             </CardHeader>
-            <Image
-              removeWrapper
-              alt={product.title}
-              className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-              src={product.img}
-            />
-            <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-              <div>
-                <p className="text-white text-tiny bg-pink-600 rounded-2xl px-4 py-2">
-                  ${product.price}
-                </p>
-              </div>
-              <Button
-                className=" text-md font-semibold text-white px-4 py-3"
-                radius="full"
-                color="primary"
-                size="sm">
-                Buy Now
-              </Button>
-            </CardFooter>
+            <CardBody className="flex justify-center items-center py-2">
+              <Image
+                alt={product.title}
+                className="h-[200px] lg:h-[300px]  w-[200px] md:w[300px] lg:w-[400px] rounded-xl"
+                src={product.img}
+              />
+              <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
+                <div>
+                  <Link href={`/products/${product._id}`}>
+                    <Button className="font-semibold ">Details</Button>
+                  </Link>
+                </div>
+                <Button
+                  className="font-semibold"
+                  color="primary"
+                  radius="full"
+                  size="md">
+                  Buy Now
+                </Button>
+              </CardFooter>
+            </CardBody>
           </Card>
         ))}
       </div>

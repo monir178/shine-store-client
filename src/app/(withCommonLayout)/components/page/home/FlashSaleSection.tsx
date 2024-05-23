@@ -27,16 +27,16 @@ const FlashSaleSection = async () => {
     })
     .slice(2, 6); // Get top 6 products
 
-  console.log(sortedProducts);
+  // console.log(sortedProducts);
 
   return (
-    <div className="mx-2 mt-8">
+    <div className="mx-2 mt-14 lg:mt-24">
       <h1 className="text-xl md:text-3xl mb-4 md:mb-8 font-bold uppercase tracking-wide lg:text-5xl text-center text-green-400">
         Flash Sale
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
         {sortedProducts.map((product: IProduct) => (
-          <Card key={product._id} className="py-4 w-full">
+          <Card key={product._id} className="py-4 w-full relative">
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
               <p className=" uppercase font-bold">{product.title}</p>
               <small className="text-green-400 font-semibold text-lg">
@@ -46,31 +46,39 @@ const FlashSaleSection = async () => {
                 <span className="text-blue-500">Brand:</span> {product.brand}
               </p>
             </CardHeader>
-            <CardBody className="flex justify-center items-center py-2">
+            <CardBody className="flex justify-center items-center py-2 ">
               <Image
+                isZoomed
                 alt={product.title}
                 className="h-[200px] lg:h-[300px]  w-[200px] md:w[300px] lg:w-[400px] rounded-xl"
                 src={product.img}
               />
               <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
                 <div>
-                  <Button className="">Details</Button>
+                  <Link href={`/products/${product._id}`}>
+                    <Button className="font-semibold ">Details</Button>
+                  </Link>
                 </div>
                 <Button
-                  className="text-tiny"
+                  className="font-semibold"
                   color="primary"
                   radius="full"
-                  size="sm">
+                  size="md">
                   Buy Now
                 </Button>
               </CardFooter>
             </CardBody>
+            <p className="absolute text-white top-0 right-0 bg-pink-600 px-3 py-1 text-md z-20 rounded-s-xl">
+              Flash sale
+            </p>
           </Card>
         ))}
       </div>
-      <div className="flex justify-center mt-6">
+      <div className="flex justify-center mt-6 lg:mt-10">
         <Link href="/flash-sale">
-          <Button size="lg" className="font-bold bg-green-400">
+          <Button
+            size="lg"
+            className="font-bold bg-green-400 text-xl text-white">
             See All Flash Sale Products
           </Button>
         </Link>
