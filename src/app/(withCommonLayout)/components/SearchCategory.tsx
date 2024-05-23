@@ -1,5 +1,4 @@
 "use client";
-import { Card, CardBody, CardHeader, Image } from "@nextui-org/react";
 import Link from "next/link";
 
 const categories = [
@@ -26,9 +25,6 @@ const SearchCategory = () => {
               </p>
             </Link>
           ))}
-          <Link href="/products">
-            <p className="bg-gray-600 px-3 py-1 rounded-xl">All Products</p>
-          </Link>
         </div>
       </div>
     </div>

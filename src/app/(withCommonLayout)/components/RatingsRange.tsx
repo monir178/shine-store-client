@@ -35,7 +35,7 @@ const RatingsRange: React.FC<IRatingsRangeProps> = ({ onChange }) => {
       label="Filter By Ratings Range"
       step={0.3}
       color="success"
-      minValue={0}
+      minValue={2}
       maxValue={5}
       value={ratingsRange}
       onChange={handleChange}
