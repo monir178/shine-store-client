@@ -20,7 +20,7 @@ const AllProducts = async ({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  console.log("Search =>", searchParams);
+  // console.log("Search =>", searchParams);
 
   const category = searchParams?.category || "";
 
@@ -29,7 +29,7 @@ const AllProducts = async ({
   const ratingsLow = searchParams?.ratingsLow || "";
   const ratingsHigh = searchParams?.ratingsHigh || "";
   const res = await fetch(
-    `https://shin-server.vercel.app/products?category=${category}&priceLow=${priceLow}&priceHigh=${priceHigh}&ratingsLow=${ratingsLow}&ratingsHigh=${ratingsHigh}`,
+    `http://localhost:5000/products?category=${category}&priceLow=${priceLow}&priceHigh=${priceHigh}&ratingsLow=${ratingsLow}&ratingsHigh=${ratingsHigh}`,
     {
       next: {
         revalidate: 30,
@@ -37,7 +37,7 @@ const AllProducts = async ({
     }
   );
   const products = await res.json();
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="mx-2 mt-8">

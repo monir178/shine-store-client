@@ -11,7 +11,7 @@ import Link from "next/link";
 import React from "react";
 
 const FlashSaleSection = async () => {
-  const res = await fetch("https://shin-server.vercel.app/flash-sale", {
+  const res = await fetch("http://localhost:5000/flash-sale", {
     next: {
       revalidate: 30,
     },
@@ -34,9 +34,9 @@ const FlashSaleSection = async () => {
       <h1 className="text-xl md:text-3xl mb-4 md:mb-8 font-bold uppercase tracking-wide lg:text-5xl text-center text-green-400">
         Flash Sale
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+      <div className="grid w-full grid-cols-2 md:grid-cols-4  gap-6 ">
         {sortedProducts.map((product: IProduct) => (
-          <Card key={product._id} className="py-4 w-full relative">
+          <Card key={product._id} className="py-4 relative">
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
               <p className=" uppercase font-bold">{product.title}</p>
               <small className="text-green-400 font-semibold text-lg">

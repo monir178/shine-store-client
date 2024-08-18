@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@nextui-org/react";
 import HeroImages from "./HeroSection";
+import ShineStoreText from "../../ui/ShineStoreText";
 
 const Banner = () => {
   return (
@@ -9,7 +10,8 @@ const Banner = () => {
       <div className="text-center lg:text-left mb-5 lg:mb-0 w-full lg:w-1/2">
         <h1 className="text-4xl font-bold mb-3">
           <span className="text-5xl text-green-400">W</span>elcome to
-          <span className="text-green-400"> Shine Store</span>
+          {/* <span className="text-green-400"> Shine Store</span> */}
+          <ShineStoreText text="Shine Store" />
         </h1>
         <p className="text-lg mb-5 max-w-[60ch] mx-auto lg:mx-0">
           Discover a world of cleanliness and convenience at Shine Store. We

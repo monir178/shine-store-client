@@ -51,13 +51,11 @@ const HeroImages = () => {
       {images.map((src, index) => (
         <SwiperSlide key={index}>
           <Image
-            isBlurred
             isZoomed
             src={src}
             alt={`Gallery Image ${index + 1}`}
             width="100%"
-            height="auto"
-            className="rounded-md"
+            className="rounded-md h-[200px]"
           />
         </SwiperSlide>
       ))}

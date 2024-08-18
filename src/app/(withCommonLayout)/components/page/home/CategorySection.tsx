@@ -18,12 +18,12 @@ const CategorySection = () => {
         <h1 className="text-xl md:text-3xl mb-4 md:mb-8 font-bold uppercase tracking-wide lg:text-5xl text-center text-green-400">
           Shop by category
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6  gap-6">
           {categories.map((category, index) => (
             <Link key={index} href={`/products?category=${category.name}`}>
-              <Card className=" h-[300px] relative hover:scale-105 transition-transform">
+              <Card className="h-[100px] md:h-[200px] relative hover:scale-105 transition-transform">
                 <CardHeader className="absolute z-10 top-0 flex-col  p-4">
-                  <h4 className="text-white font-medium absolute top-0 right-0 text-lg bg-pink-500 rounded-s-xl px-4 py-2">
+                  <h4 className="text-white  absolute top-0 right-0  bg-black bg-opacity-50 text-sm md:text-medium  w-full px-4 py-2">
                     {category.name}
                   </h4>
                 </CardHeader>

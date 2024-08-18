@@ -1,15 +1,17 @@
-import Image from "next/image";
+import React from "react";
+import styles from "./loading.module.css";
 
 const LoadingPage = () => {
   return (
-    <div className="w-[90%] mx-auto">
-      <Image
-        src="https://i.stack.imgur.com/hzk6C.gif"
-        width={500}
-        height={500}
-        alt="loading"
-        className="w-96 mx-auto"
-      />
+    <div className="flex justify-center items-center h-screen">
+      <div className={styles.loader}>
+        {[...Array(5)].map((_, index) => (
+          <div
+            key={index}
+            className={styles.orbe}
+            style={{ "--index": index } as React.CSSProperties}></div>
+        ))}
+      </div>
     </div>
   );
 };

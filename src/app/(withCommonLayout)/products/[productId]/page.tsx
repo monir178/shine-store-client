@@ -8,7 +8,7 @@ interface IProductId {
 }
 
 export const generateStaticParams = async () => {
-  const res = await fetch("https://shin-server.vercel.app/all-products");
+  const res = await fetch("http://localhost:5000/all-products");
 
   const staticProducts = await res.json();
 
@@ -20,15 +20,13 @@ export const generateStaticParams = async () => {
 const ProductDetailsPage = async ({ params }: IProductId) => {
   //   console.log(searchParams);
 
-  const res = await fetch(
-    `https://shin-server.vercel.app/products/${params.productId}`
-  );
+  const res = await fetch(`http://localhost:5000/products/${params.productId}`);
 
   const data = await res.json();
-  console.log("single =>", data);
+  // console.log("single =>", data);
 
   return (
-    <div className="flex flex-col md:flex-row justify-center gap-4 items-center w-full mt-6">
+    <div className="flex flex-col px-4 md:flex-row justify-center gap-4 items-center w-full mt-6">
       <div className="lg:mr-8 mb-4 lg:mb-0">
         <Image
           isBlurred

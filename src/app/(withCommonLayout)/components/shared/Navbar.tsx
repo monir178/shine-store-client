@@ -15,8 +15,13 @@ import Image from "next/image";
 import shine from "../../../../../public/shine.png";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const CommonNavbar = () => {
+  const { data: session } = useSession();
+  const user = session?.user;
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
@@ -40,7 +45,8 @@ const CommonNavbar = () => {
         />
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden  justify-end pr-3" justify="center">
+      {/* Small Device */}
+      <NavbarContent className="sm:hidden" justify="center">
         <NavbarBrand>
           <ThemeSwitcher />
           <Link href="/">
@@ -51,7 +57,7 @@ const CommonNavbar = () => {
                 width={50}
                 height={50}
               />
-              <p className="font-semibold  text-lg ms-2 text-green-400">
+              <p className="font-semibold text-lg ms-2 text-green-400">
                 Shine Store
               </p>
             </div>
@@ -59,6 +65,7 @@ const CommonNavbar = () => {
         </NavbarBrand>
       </NavbarContent>
 
+      {/* for large device */}
       <NavbarContent className="hidden sm:flex justify-between w-full">
         <NavbarContent justify="start">
           <NavbarBrand className="flex items-center">
@@ -70,7 +77,7 @@ const CommonNavbar = () => {
                   width={50}
                   height={50}
                 />
-                <p className="font-semibold  ms-3 text-medium lg:text-2xl text-green-400">
+                <p className="font-semibold ms-3 text-medium lg:text-2xl text-green-400">
                   Shine Store
                 </p>
               </div>
@@ -83,7 +90,7 @@ const CommonNavbar = () => {
               <Link
                 href={item.path}
                 color="foreground"
-                className=" font-semibold">
+                className="font-semibold">
                 {item.label}
               </Link>
             </NavbarItem>
@@ -93,20 +100,33 @@ const CommonNavbar = () => {
           </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
-            <Link href="#" className=" font-semibold text-green-400">
-              Login
-            </Link>
-          </NavbarItem>
-          <NavbarItem className="hidden lg:flex">
-            <Button
-              as={Link}
-              href="#"
-              variant="flat"
-              className=" font-semibold text-green-400">
-              Sign Up
-            </Button>
-          </NavbarItem>
+          {user ? (
+            <NavbarItem className="hidden lg:flex">
+              <Button
+                onClick={() => signOut({ callbackUrl: "/" })}
+                variant="flat"
+                className="font-semibold text-green-400">
+                Logout
+              </Button>
+            </NavbarItem>
+          ) : (
+            <>
+              <NavbarItem className="hidden lg:flex">
+                <Link href="/login" className="font-semibold text-green-400">
+                  Login
+                </Link>
+              </NavbarItem>
+              <NavbarItem className="hidden lg:flex">
+                <Button
+                  as={Link}
+                  href="/register"
+                  variant="flat"
+                  className="font-semibold text-green-400">
+                  Sign Up
+                </Button>
+              </NavbarItem>
+            </>
+          )}
         </NavbarContent>
       </NavbarContent>
 
@@ -114,7 +134,7 @@ const CommonNavbar = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={index}>
             <Link
-              className="w-full  font-semibold"
+              className="w-full font-semibold"
               color={
                 index === 2
                   ? "warning"
@@ -128,23 +148,39 @@ const CommonNavbar = () => {
             </Link>
           </NavbarMenuItem>
         ))}
-        <NavbarMenuItem>
-          <Link
-            className="w-full  font-semibold text-green-400"
-            href="#"
-            onClick={() => setIsMenuOpen(false)}>
-            Login
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Button
-            className="w-full  font-semibold text-green-400"
-            href="#"
-            size="lg"
-            onClick={() => setIsMenuOpen(false)}>
-            Sign Up
-          </Button>
-        </NavbarMenuItem>
+        {user ? (
+          <NavbarMenuItem>
+            <Button
+              className="w-full font-semibold text-green-400"
+              onClick={() => {
+                signOut({ callbackUrl: "/" });
+                setIsMenuOpen(false);
+              }}>
+              Logout
+            </Button>
+          </NavbarMenuItem>
+        ) : (
+          <>
+            <NavbarMenuItem>
+              <Link
+                className="w-full font-semibold text-green-400"
+                href="/login"
+                onClick={() => setIsMenuOpen(false)}>
+                Login
+              </Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+              <Button
+                className="w-full font-semibold text-green-400"
+                as={Link}
+                href="/register"
+                size="lg"
+                onClick={() => setIsMenuOpen(false)}>
+                Sign Up
+              </Button>
+            </NavbarMenuItem>
+          </>
+        )}
       </NavbarMenu>
     </Navbar>
   );
