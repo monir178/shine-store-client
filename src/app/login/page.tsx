@@ -1,16 +1,19 @@
-// src/app/login/page.tsx
-import { signIn, auth } from "@/auth";
-import { redirect } from "next/navigation";
-import { BsGithub } from "react-icons/bs";
-import { RiGoogleLine } from "react-icons/ri";
+"use client";
 
-const Login = async () => {
-  const session = await auth();
-  const user = session?.user;
-  if (user) {
-    console.log("user is here");
-    redirect("/dashboard");
-  }
+import ProvidersLogin from "@/components/ProvidersLogin";
+import { useForm } from "react-hook-form";
+
+export type TUserLoginData = {
+  email: string;
+  password: string;
+};
+
+const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TUserLoginData>();
 
   return (
     <div className="min-h-screen flex items-center justify-center mx-4 md:mx-0">
@@ -21,7 +24,7 @@ const Login = async () => {
             <div>
               <label className="sr-only">Email address</label>
               <input
-                name="email"
+                {...register("email")}
                 type="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500  rounded-t-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
@@ -31,7 +34,7 @@ const Login = async () => {
             <div>
               <label className="sr-only">Password</label>
               <input
-                name="password"
+                {...register("password")}
                 type="password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
@@ -48,31 +51,8 @@ const Login = async () => {
             </button>
           </div>
         </form>
-
-        {/* Providers */}
-        <section className=" flex justify-center items-center gap-4 my-6">
-          <form
-            action={async () => {
-              "use server";
-              await signIn("github");
-            }}>
-            <button className="bg-black text-white rounded-lg p-2 flex items-center gap-2">
-              <BsGithub size={24} />
-              <span>Github</span>
-            </button>
-          </form>
-          <form
-            action={async () => {
-              "use server";
-              await signIn("google");
-            }}>
-            <button className="bg-red-500 text-white rounded-lg p-2 flex items-center gap-2">
-              <RiGoogleLine size={24} strokeWidth={2} />
-              <span>Google</span>
-            </button>
-          </form>
-        </section>
-
+        {/* <ProvidersLogin /> */}
+        <ProvidersLogin />
         <p className="mt-4 text-center text-sm ">
           Don’t have an account?{" "}
           <a

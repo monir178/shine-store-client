@@ -16,12 +16,16 @@ import shine from "../../../../../public/shine.png";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-import { useSession } from "next-auth/react";
 
-const CommonNavbar = () => {
-  const { data: session } = useSession();
-  const user = session?.user;
+type TUserProps = {
+  user?: {
+    name?: string | undefined | null;
+    email?: string | undefined | null;
+    image?: string | undefined | null;
+  };
+};
 
+const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
@@ -84,52 +88,42 @@ const CommonNavbar = () => {
             </Link>
           </NavbarBrand>
         </NavbarContent>
-        <NavbarContent justify="end">
-          {menuItems.map((item) => (
-            <NavbarItem className="hidden lg:flex" key={item.path}>
-              <Link
-                href={item.path}
-                color="foreground"
-                className="font-semibold">
-                {item.label}
-              </Link>
-            </NavbarItem>
-          ))}
-          <NavbarItem>
-            <ThemeSwitcher />
+      </NavbarContent>
+      <NavbarContent justify="end">
+        {menuItems.map((item) => (
+          <NavbarItem className="hidden lg:flex" key={item.path}>
+            <Link href={item.path} color="foreground" className="font-semibold">
+              {item.label}
+            </Link>
           </NavbarItem>
-        </NavbarContent>
-        <NavbarContent justify="end">
-          {user ? (
-            <NavbarItem className="hidden lg:flex">
-              <Button
-                onClick={() => signOut({ callbackUrl: "/" })}
-                variant="flat"
-                className="font-semibold text-green-400">
-                Logout
-              </Button>
-            </NavbarItem>
-          ) : (
-            <>
-              <NavbarItem className="hidden lg:flex">
-                <Link href="/login" className="font-semibold text-green-400">
-                  Login
-                </Link>
-              </NavbarItem>
-              <NavbarItem className="hidden lg:flex">
-                <Button
-                  as={Link}
-                  href="/register"
-                  variant="flat"
-                  className="font-semibold text-green-400">
-                  Sign Up
-                </Button>
-              </NavbarItem>
-            </>
-          )}
-        </NavbarContent>
+        ))}
+        <NavbarItem>
+          <ThemeSwitcher />
+        </NavbarItem>
       </NavbarContent>
 
+      {!session?.user ? (
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Button color="success" variant="shadow">
+              <Link href="/login" className=" font-semibold">
+                Login
+              </Link>
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+      ) : (
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Button
+              variant="shadow"
+              onClick={() => signOut()}
+              className="bg-red-500 text-white font-semibold">
+              Logout
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+      )}
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={index}>
@@ -148,38 +142,30 @@ const CommonNavbar = () => {
             </Link>
           </NavbarMenuItem>
         ))}
-        {user ? (
+
+        {!session?.user ? (
           <NavbarMenuItem>
             <Button
-              className="w-full font-semibold text-green-400"
-              onClick={() => {
-                signOut({ callbackUrl: "/" });
-                setIsMenuOpen(false);
-              }}>
-              Logout
+              onClick={() => setIsMenuOpen(false)}
+              color="success"
+              variant="shadow">
+              <Link href="/login" className=" font-semibold text-white ">
+                Login
+              </Link>
             </Button>
           </NavbarMenuItem>
         ) : (
-          <>
-            <NavbarMenuItem>
-              <Link
-                className="w-full font-semibold text-green-400"
-                href="/login"
-                onClick={() => setIsMenuOpen(false)}>
-                Login
-              </Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              <Button
-                className="w-full font-semibold text-green-400"
-                as={Link}
-                href="/register"
-                size="lg"
-                onClick={() => setIsMenuOpen(false)}>
-                Sign Up
-              </Button>
-            </NavbarMenuItem>
-          </>
+          <NavbarMenuItem>
+            <Button
+              variant="shadow"
+              onClick={() => {
+                setIsMenuOpen(false);
+                signOut();
+              }}
+              className="bg-red-500 text-white font-semibold">
+              Logout
+            </Button>
+          </NavbarMenuItem>
         )}
       </NavbarMenu>
     </Navbar>
