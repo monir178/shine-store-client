@@ -41,9 +41,11 @@ const AllProducts = async ({
 
   return (
     <div className="mx-2 mt-8">
-      <SearchCategory />
-      <PriceRange />
-      <RatingsRange />
+      <div className="flex  justify-between items-center gap-2 flex-wrap mb-6">
+        <SearchCategory />
+        <PriceRange />
+        <RatingsRange />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
         {products.map((product: IProduct) => (
           <Card key={product._id} className="py-4 w-full">

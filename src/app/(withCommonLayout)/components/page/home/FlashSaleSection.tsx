@@ -34,11 +34,11 @@ const FlashSaleSection = async () => {
       <h1 className="text-xl md:text-3xl mb-4 md:mb-8 font-bold uppercase tracking-wide lg:text-5xl text-center text-green-400">
         Flash Sale
       </h1>
-      <div className="grid w-full grid-cols-2 md:grid-cols-4  gap-6 ">
+      <div className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6 ">
         {sortedProducts.map((product: IProduct) => (
           <Card key={product._id} className="py-4 relative">
-            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-              <p className=" uppercase font-bold">{product.title}</p>
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start font-normal text-sm">
+              <p className="  ">{product.title}</p>
               <small className="text-green-400 font-semibold text-lg">
                 ${product.price}
               </small>
@@ -50,7 +50,7 @@ const FlashSaleSection = async () => {
               <Image
                 isZoomed
                 alt={product.title}
-                className="h-[200px] lg:h-[300px]  w-[200px] md:w[300px] lg:w-[400px] rounded-xl"
+                className="h-[100px] md:h-[170px] lg:h-[250px]  w-[100px] md:w-[300px] object-cover lg:w-[400px] rounded-md"
                 src={product.img}
               />
               <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">

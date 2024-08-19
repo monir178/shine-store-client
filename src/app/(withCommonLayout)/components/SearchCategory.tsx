@@ -1,5 +1,6 @@
 "use client";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ChangeEvent } from "react";
 
 const categories = [
   { name: "Dishwashing Items", image: "/dishwashing-supplies.png" },
@@ -11,21 +12,34 @@ const categories = [
 ];
 
 const SearchCategory = () => {
+  const router = useRouter();
+
+  const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const selectedCategory = event.target.value;
+    if (selectedCategory) {
+      router.push(`/products?category=${selectedCategory}`);
+    }
+  };
+
   return (
-    <div className="mb-6">
-      <div className="container mx-auto px-4">
-        <h1 className="text-xl lg:text-3xl mb-4 font-bold  text-green-400">
+    <div>
+      <div className="container mx-auto">
+        <h1 className="text-xl lg:text-3xl mb-4 font-bold text-green-400">
           Filter by Category
         </h1>
-        <div className=" text-white  grid grid-cols-2 lg:grid-cols-4 gap-3 w-full ">
+        <select
+          onChange={handleCategoryChange}
+          className="bg-gray-600 text-white px-3 py-2 rounded-xl "
+          defaultValue="">
+          <option value="" disabled>
+            Select a category
+          </option>
           {categories.map((category, index) => (
-            <Link key={index} href={`/products?category=${category.name}`}>
-              <p className="bg-gray-600 px-3 py-1 rounded-xl">
-                {category.name}
-              </p>
-            </Link>
+            <option key={index} value={category.name}>
+              {category.name}
+            </option>
           ))}
-        </div>
+        </select>
       </div>
     </div>
   );

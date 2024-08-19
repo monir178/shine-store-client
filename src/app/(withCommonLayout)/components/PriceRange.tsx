@@ -41,7 +41,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ onChange }) => {
       onChange={handleChange}
       onClick={handleClick}
       formatOptions={{ style: "currency", currency: "USD" }}
-      className="max-w-sm my-5 "
+      className="max-w-sm"
     />
   );
 };

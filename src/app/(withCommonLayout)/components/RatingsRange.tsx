@@ -41,7 +41,7 @@ const RatingsRange: React.FC<IRatingsRangeProps> = ({ onChange }) => {
       onChange={handleChange}
       onClick={handleClick}
       formatOptions={{ style: "decimal" }}
-      className="max-w-sm mb-5 "
+      className="max-w-sm"
     />
   );
 };
