@@ -29,7 +29,7 @@ const AllProducts = async ({
   const ratingsLow = searchParams?.ratingsLow || "";
   const ratingsHigh = searchParams?.ratingsHigh || "";
   const res = await fetch(
-    `http://localhost:5000/products?category=${category}&priceLow=${priceLow}&priceHigh=${priceHigh}&ratingsLow=${ratingsLow}&ratingsHigh=${ratingsHigh}`,
+    `https://shin-server.vercel.app/products?category=${category}&priceLow=${priceLow}&priceHigh=${priceHigh}&ratingsLow=${ratingsLow}&ratingsHigh=${ratingsHigh}`,
     {
       next: {
         revalidate: 30,

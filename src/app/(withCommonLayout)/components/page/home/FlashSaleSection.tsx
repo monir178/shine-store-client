@@ -11,7 +11,7 @@ import Link from "next/link";
 import React from "react";
 
 const FlashSaleSection = async () => {
-  const res = await fetch("http://localhost:5000/flash-sale", {
+  const res = await fetch("https://shin-server.vercel.app/flash-sale", {
     next: {
       revalidate: 30,
     },

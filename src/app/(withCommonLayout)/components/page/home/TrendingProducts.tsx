@@ -3,7 +3,7 @@ import { Button, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
 
 const TrendingProducts = async () => {
-  const res = await fetch("http://localhost:5000/trending-products", {
+  const res = await fetch("https://shin-server.vercel.app/trending-products", {
     next: {
       revalidate: 30,
     },
