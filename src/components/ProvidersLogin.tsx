@@ -5,7 +5,9 @@ import { RiGoogleLine } from "react-icons/ri";
 const ProvidersLogin = () => {
   return (
     <div className="my-6">
-      <p className="text-center mb-4 text-green-400">Or Sign Up Using</p>
+      <p className="text-center mb-4 text-green-400 font-bold">
+        Or Sign Up using
+      </p>
       <div className="flex justify-center items-center gap-4 ">
         <button
           onClick={() =>

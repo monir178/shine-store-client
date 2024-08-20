@@ -1,5 +1,6 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { TUserLoginData } from "@/app/login/page";
 
 export const loginUser = async (data: TUserLoginData) => {
@@ -14,6 +15,15 @@ export const loginUser = async (data: TUserLoginData) => {
     });
 
     const userInfo = await res.json();
+
+    if (userInfo?.accessToken) {
+        cookies().set({
+            name: 'accessToken',
+            value: userInfo.accessToken,
+            httpOnly: true,
+            path: '/',
+        })
+    }
 
     return userInfo;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -26,7 +26,19 @@ type TUserProps = {
 };
 
 const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Accessing localStorage on the client side
+    setAccessToken(localStorage.getItem("accessToken"));
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    document.cookie = "accessToken=; Max-Age=0; path=/;";
+    signOut();
+  };
 
   const menuItems = [
     { label: "Home", path: "/" },
@@ -35,6 +47,8 @@ const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
     { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
   ];
+
+  const isAuthenticated = session?.user || accessToken;
 
   return (
     <Navbar
@@ -102,7 +116,7 @@ const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
         </NavbarItem>
       </NavbarContent>
 
-      {!session?.user ? (
+      {!isAuthenticated ? (
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
             <Button color="success" variant="shadow">
@@ -117,7 +131,9 @@ const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
           <NavbarItem className="hidden lg:flex">
             <Button
               variant="shadow"
-              onClick={() => signOut()}
+              onClick={() => {
+                handleLogout();
+              }}
               className="bg-red-500 text-white font-semibold">
               Logout
             </Button>
@@ -143,7 +159,7 @@ const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
           </NavbarMenuItem>
         ))}
 
-        {!session?.user ? (
+        {!isAuthenticated ? (
           <NavbarMenuItem>
             <Button
               onClick={() => setIsMenuOpen(false)}
@@ -160,7 +176,8 @@ const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
               variant="shadow"
               onClick={() => {
                 setIsMenuOpen(false);
-                signOut();
+
+                handleLogout();
               }}
               className="bg-red-500 text-white font-semibold">
               Logout
