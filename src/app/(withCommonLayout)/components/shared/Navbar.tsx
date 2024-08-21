@@ -34,9 +34,9 @@ const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
     setAccessToken(localStorage.getItem("accessToken"));
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem("accessToken");
-    document.cookie = "accessToken=; Max-Age=0; path=/;";
+
     signOut();
   };
 
@@ -57,14 +57,14 @@ const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent className="sm:hidden md:flex lg:hidden">
+      <NavbarContent className="sm:hidden md:flex lg:hidden justify-end">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
 
       {/* Small Device */}
-      <NavbarContent className="sm:hidden" justify="center">
+      <NavbarContent className="sm:hidden">
         <NavbarBrand>
           <ThemeSwitcher />
           <Link href="/">
@@ -111,7 +111,7 @@ const CommonNavbar = ({ session }: { session: TUserProps | null }) => {
             </Link>
           </NavbarItem>
         ))}
-        <NavbarItem>
+        <NavbarItem className="hidden md:flex">
           <ThemeSwitcher />
         </NavbarItem>
       </NavbarContent>

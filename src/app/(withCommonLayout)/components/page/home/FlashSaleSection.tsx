@@ -30,7 +30,7 @@ const FlashSaleSection = async () => {
   // console.log(sortedProducts);
 
   return (
-    <div className="mx-2 mt-14 lg:mt-24">
+    <div className="mx-4 mt-14 lg:mt-24">
       <h1 className="text-xl md:text-3xl mb-4 md:mb-8 font-bold uppercase tracking-wide lg:text-5xl text-center text-green-400">
         Flash Sale
       </h1>
